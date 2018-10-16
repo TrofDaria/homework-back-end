@@ -2,34 +2,34 @@ package code.formating;
 
 
 public class Formatter {
-    static final int defaultSpaceCoef = 4;
+    static final int spaceCoef = 4;
 
     static String format(String str) {
-        int spaceCoef = 0;
+        int currentSpaceCoef = 0;
         StringBuilder sb = new StringBuilder();
-        char[] strToArray = str.toCharArray();
+        char[] arr = str.toCharArray();
 
-        for (int i = 0; i < strToArray.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
 
-            for (int x = 0; x < spaceCoef; x++) {
+            for (int x = 0; x < currentSpaceCoef; x++) {
                 sb.append(' ');
             }
 
-            for (int j = i; j < strToArray.length; j++, i++) {
-                if (strToArray[i] == '}') {
-                    spaceCoef -= defaultSpaceCoef;
-                    for (int y = 0; y < defaultSpaceCoef; y++) {
+            for (int j = i; j < arr.length; j++, i++) {
+                if (arr[i] == '}') {
+                    currentSpaceCoef -= spaceCoef;
+                    for (int y = 0; y < spaceCoef; y++) {
                         sb.deleteCharAt(sb.length() - 1);
                     }
                     sb.append('}');
                     break;
                 }
-                sb.append(strToArray[j]);
-                if (strToArray[i] == '{') {
-                    spaceCoef += defaultSpaceCoef;
+                sb.append(arr[j]);
+                if (arr[i] == '{') {
+                    currentSpaceCoef += spaceCoef;
                     break;
                 }
-                if (strToArray[j] == ';') {
+                if (arr[j] == ';') {
                     break;
                 }
             }

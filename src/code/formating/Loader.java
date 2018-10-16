@@ -15,16 +15,14 @@ public class Loader {
                 while ((x = br.readLine()) != null) {
                     sb.append(x);
                 }
-                return sb.toString();
 
             } catch (IOException e) {
                 e.printStackTrace();
-                return "";
             }
         } catch (FileNotFoundException e) {
             System.out.println(e);
             e.printStackTrace();
-            return "";
         }
+        return sb.toString();
     }
 }

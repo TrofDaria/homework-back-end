@@ -15,6 +15,7 @@ public class Loader {
                 while ((x = br.readLine()) != null) {
                     sb.append(x);
                 }
+                br.close();
 
             } catch (IOException e) {
                 e.printStackTrace();

@@ -24,7 +24,16 @@ public class Formatter {
                     sb.append('}');
                     break;
                 }
-                sb.append(arr[j]);
+
+                if (sb.length() == 0) {
+                    if (arr[j] != ' ')
+                        sb.append(arr[j]);
+                } else {
+                    if (!(sb.charAt(sb.length() - (currentSpaceCoef+1)) == '\n' && arr[j] == ' '))
+                        sb.append(arr[j]);
+
+                }
+
                 if (arr[i] == '{') {
                     currentSpaceCoef += spaceCoef;
                     break;

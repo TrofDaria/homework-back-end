@@ -1,8 +1,7 @@
 
 
 
-public class
-HelloWorld {
+public class HelloWorld {
 
 
 
@@ -14,12 +13,18 @@ HelloWorld {
 
     {
         StringBuilder sb = new StringBuilder();
-        try {
+        try{
 
 
-                                        BufferedReader br = new BufferedReader(new FileReader(fileName));
-            try {
+                                        BufferedReader br =
+
+                                                new BufferedReader(new FileReader(fileName));
+            try{
                 String x;while ((x = br.readLine()) != null) {
+
+
+
+
                     sb.append(x);}
 
             } catch                                                                        (IOException e) {
@@ -36,3 +41,7 @@ HelloWorld {
         return sb.toString();
     }
 }
+
+
+
+

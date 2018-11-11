@@ -1,4 +1,4 @@
-package com.sevenbits.interfaces;
+package it.sevenbits.code.writer;
 
 /**
  * Interface IWriter.
@@ -12,6 +12,7 @@ public interface IWriter {
      * Writes a character.
      *
      * @param ch - a character to write
+     * @throws WriterException - throws when failed to write char
      */
-    void write(char ch);
+    void write(char ch) throws WriterException;
 }

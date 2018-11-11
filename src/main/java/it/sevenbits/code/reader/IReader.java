@@ -1,4 +1,4 @@
-package com.sevenbits.interfaces;
+package it.sevenbits.code.reader;
 
 import java.io.IOException;
 
@@ -21,7 +21,7 @@ public interface IReader {
      * Reads a character.
      *
      * @return char
-     * @throws IOException - throws when the file cannot be opened
+     * @throws ReaderException - throws when failed to read char
      */
-    char read() throws IOException;
+    char read() throws ReaderException;
 }

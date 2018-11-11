@@ -1,8 +1,10 @@
-package com.sevenbits;
+package it.sevenbits.code;
 
 
-import com.sevenbits.interfaces.IReader;
-import com.sevenbits.interfaces.IWriter;
+import it.sevenbits.code.reader.ReaderException;
+import it.sevenbits.code.writer.IWriter;
+import it.sevenbits.code.reader.IReader;
+import it.sevenbits.code.writer.WriterException;
 
 import java.io.IOException;
 
@@ -14,26 +16,23 @@ import java.io.IOException;
  * @since 2018-11-1
  */
 public class Formatter {
-    private static final int SPACE_ADDEND = 4;
+    private final int SPACE_ADDEND = 4;
 
     /**
      * Formats white spaces and new lines.
      *
      * @param reader - source of code to format
      * @param writer - storage for formatted code
+     * @throws ReaderException - throws when reading exception occurs
+     * @throws WriterException - throws when writing exception occurs
      */
-    static void format(final IReader reader, final IWriter writer) {
+    public void format(final IReader reader, final IWriter writer) throws ReaderException, WriterException {
         int currentSpaceCount = 0;
         char currentChar;
         char previousChar = ' ';
         boolean newLine = false;
         while (reader.hasNext()) {
-            try {
                 currentChar = reader.read();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-                return;
-            }
             if (currentChar == '}') {
                 currentSpaceCount -= SPACE_ADDEND;
                 newLine = true;
@@ -57,8 +56,8 @@ public class Formatter {
             if (currentChar == ';') {
                 newLine = true;
             }
-            if ((!(currentChar == ' ' && previousChar == ' ') && currentChar != '\n') ) {
-                if(!(currentChar == ' ' && previousChar == '{') && !(currentChar == ' ' && previousChar == ';' )) {
+            if ((!(currentChar == ' ' && previousChar == ' ') && currentChar != '\n')) {
+                if( !(currentChar == ' ' && previousChar == '{') && !(currentChar == ' ' && previousChar == ';')) {
                 writer.write(currentChar);
                 previousChar = currentChar;
                 }

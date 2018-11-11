@@ -1,4 +1,4 @@
 /**
  * Formats Java code.
  */
-package com.sevenbits;
+package it.sevenbits.code;

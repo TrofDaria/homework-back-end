@@ -1,7 +1,5 @@
 package it.sevenbits.code.reader;
 
-import java.io.IOException;
-
 /**
  * Interface IReader.
  *

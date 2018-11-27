@@ -1,6 +1,7 @@
-package it.sevenbits.code.writer;
+package it.sevenbits.code;
 
 import it.sevenbits.code.writer.IWriter;
+import it.sevenbits.code.writer.WriterException;
 
 /**
  * Class StringWriter writes to String.

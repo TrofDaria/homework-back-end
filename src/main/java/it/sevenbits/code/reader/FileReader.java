@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 
 /**
@@ -14,7 +15,7 @@ import java.io.InputStreamReader;
  * @since 2018-11-1
  */
 
-public class FileReader implements IReader {
+public class FileReader implements IReader , AutoCloseable {
     private BufferedReader br;
 
     /**
@@ -25,7 +26,7 @@ public class FileReader implements IReader {
      **/
     public FileReader(final String path) throws ReaderException {
         try {
-            br = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(path), StandardCharsets.UTF_8));
         } catch (IOException e) {
             throw new ReaderException(e.getMessage(), e);
         }
@@ -53,6 +54,19 @@ public class FileReader implements IReader {
     public char read() throws ReaderException {
         try {
             return (char) br.read();
+        } catch (IOException e) {
+            throw new ReaderException(e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Closes reader.
+     *
+     * @throws ReaderException - throws when failed to close reader
+     */
+    public void close() throws ReaderException {
+        try {
+            br.close();
         } catch (IOException e) {
             throw new ReaderException(e.getMessage(), e);
         }

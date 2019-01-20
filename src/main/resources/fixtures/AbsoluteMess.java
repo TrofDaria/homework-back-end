@@ -6,13 +6,16 @@ public class HelloWorld {
 
 
 
-
+    /** Multiline comment!*/
 
     public static         String loadString(String fileName)
 
 
     {
         StringBuilder sb = new StringBuilder();
+
+
+        // single line comment
         try{
 
 

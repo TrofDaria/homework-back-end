@@ -8,14 +8,15 @@ package it.sevenbits.code.lexer.token;
  * @since 2018-11-1
  */
 public class Token implements IToken {
+
     private String name;
     private String lexeme;
 
     /**
      * Constructor.
      *
-     * @param name   - token name
-     * @param lexeme - token lexeme
+     * @param name   - token name.
+     * @param lexeme - token lexeme.
      */
     public Token(final String name, final String lexeme) {
         this.name = name;
@@ -25,7 +26,7 @@ public class Token implements IToken {
     /**
      * Returns token name.
      *
-     * @return token name
+     * @return token name.
      */
     @Override
     public String getName() {
@@ -33,9 +34,9 @@ public class Token implements IToken {
     }
 
     /**
-     * Returns a lexeme that the token contains.
+     * Returns a lexeme that this token contains.
      *
-     * @return lexeme
+     * @return lexeme.
      */
     @Override
     public String getLexeme() {

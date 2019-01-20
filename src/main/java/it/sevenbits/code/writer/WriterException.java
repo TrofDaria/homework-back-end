@@ -12,7 +12,7 @@ public class WriterException extends Exception {
     /**
      * Constructor.
      *
-     * @param message - message to receive
+     * @param message - message to receive.
      */
     public WriterException(final String message) {
         super(message);
@@ -21,8 +21,8 @@ public class WriterException extends Exception {
     /**
      * Constructor.
      *
-     * @param message - message to receive
-     * @param e - exception to handle
+     * @param message - message to receive.
+     * @param e       - exception to handle.
      */
     public WriterException(final String message, final Exception e) {
         super(message, e);

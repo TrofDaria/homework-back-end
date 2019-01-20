@@ -29,7 +29,7 @@ public class FormatterTest {
 
     @Test
     public void testFormatOneLine() throws ReaderException, WriterException {
-        String expectedResult = "a {\n    ddd;\n    b {\n        ccc;\n    }\n    eee;\n}";
+        String expectedResult = "a {\n    b;\n    c;\n}";
         FileReader fileReader = new FileReader("src/test/resources/fixtures/OneLine.java");
         IWriter stringWriter = new StringWriter();
         Formatter formatter = new Formatter(new LexerFactory());
@@ -42,7 +42,7 @@ public class FormatterTest {
     @Test
     public void testFormatOnlyParentheses() throws ReaderException, WriterException {
         String expectedResult = "{\n    {\n        {\n        }\n    }\n}";
-        FileReader fileReader = new FileReader("src/test/resources/fixtures/Parentheses.java");
+        FileReader fileReader = new FileReader("src/test/resources/fixtures/Braces.java");
         IWriter stringWriter = new StringWriter();
         Formatter formatter = new Formatter(new LexerFactory());
         formatter.format(fileReader, stringWriter);

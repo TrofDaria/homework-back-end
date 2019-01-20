@@ -1,7 +1,11 @@
 package it.sevenbits.code.lexer;
 
+import it.sevenbits.code.lexer.sm.State;
+import it.sevenbits.code.lexer.sm.StateTransition;
+import it.sevenbits.code.lexer.cmd.CommandRepository;
+import it.sevenbits.code.lexer.cmd.ICommand;
 import it.sevenbits.code.lexer.token.IToken;
-import it.sevenbits.code.lexer.token.Token;
+import it.sevenbits.code.lexer.token.TokenBuilder;
 import it.sevenbits.code.reader.IReader;
 import it.sevenbits.code.reader.ReaderException;
 
@@ -15,90 +19,60 @@ import it.sevenbits.code.reader.ReaderException;
  */
 public class Lexer implements ILexer {
     private IReader reader;
-    private StringBuilder currentLexeme;
-    private boolean wordInProcess;
-    private StringBuilder readyLexeme;
+    private StateTransition stateTransition;
+    private IToken currentToken;
+    private IToken prevToken;
 
     /**
      * Constructor.
      *
-     * @param reader - determines the reader from which lexer will be taking chars to process
-     **/
-    public Lexer(final IReader reader) {
+     * @param reader - determines the reader from which lexer will be taking chars to process.
+     * @throws ReaderException - throws when reading exception occurs.
+     */
+    public Lexer(final IReader reader) throws ReaderException {
         this.reader = reader;
-        currentLexeme = new StringBuilder();
-        readyLexeme = new StringBuilder();
-        wordInProcess = false;
+        stateTransition = new StateTransition();
+        readToken();
     }
 
     /**
      * Reads token and returns it.
      *
-     * @throws ReaderException - throws when reading exception occurs
+     * @throws ReaderException - throws when reading exception occurs.
      */
     @Override
     public IToken readToken() throws ReaderException {
-        if (readyLexeme.length() != 0) {
-            currentLexeme = readyLexeme;
-            readyLexeme = new StringBuilder();
-            return newToken();
+        if (hasMoreTokens()) {
+            prevToken = currentToken;
         }
-        while (reader.hasNext()) {
+        State state = stateTransition.getStartState();
+        State finalState = new State("TOKEN_READY");
+        TokenBuilder tokenBuilder = new TokenBuilder();
+        CommandRepository commandRepository = new CommandRepository(tokenBuilder);
+        while (reader.hasNext() && !state.equals(finalState)) {
             char c = reader.read();
-            if (c == '{' || c == '}' || c == ';' || c == ' ') {
-                if (wordInProcess) {
-                    if (c == ' ') {
-                        wordInProcess = false;
-                        return newToken();
-                    } else {
-                        wordInProcess = false;
-                        readyLexeme.append(c);
-                        return newToken();
-                    }
-                } else {
-                    if (c != ' ') {
-                        currentLexeme.append(c);
-                        return newToken();
-                    }
-                }
-            } else {
-                if (c != '\n') {
-                    wordInProcess = true;
-                    currentLexeme.append(c);
-                }
-            }
+            ICommand command = commandRepository.getCommand(state, c);
+            // TODO: как передать контекст? TokenBuilder? Аргумент в execute?
+            command.execute();
+            state = stateTransition.nextState(state, c);
+
         }
-        return newToken();
+        currentToken = tokenBuilder.createToken();
+        if (prevToken != null) {
+            return prevToken;
+        } else {
+            return currentToken;
+        }
+
     }
 
     /**
      * Determines whether there are more token exists.
+     *
+     * @return true if exists, false otherwise.
      */
     @Override
     public boolean hasMoreTokens() {
-        if (readyLexeme.length() != 0) {
-            return true;
-        }
-        return reader.hasNext();
-    }
-
-    /**
-     * Creates token.
-     */
-    private IToken newToken() {
-        String lexeme = currentLexeme.toString();
-        currentLexeme = new StringBuilder();
-        switch (lexeme) {
-            case "{":
-                return new Token("OPENING_PARENTHESIS", lexeme);
-            case "}":
-                return new Token("CLOSING_PARENTHESIS", lexeme);
-            case ";":
-                return new Token("END_OF_LINE", lexeme);
-            case "":
-                return new Token("NONE", lexeme);
-            default:
-                return new Token("WORD", lexeme);
-        }
+        return currentToken != null;
     }
 }

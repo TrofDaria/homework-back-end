@@ -11,8 +11,8 @@ public interface IWriter {
     /**
      * Writes a character.
      *
-     * @param ch - a character to write
-     * @throws WriterException - throws when failed to write char
+     * @param ch - a character to write.
+     * @throws WriterException - throws when failed to write char.
      */
     void write(char ch) throws WriterException;
 }

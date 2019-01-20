@@ -10,19 +10,20 @@ import it.sevenbits.code.reader.ReaderException;
  * @version 1.0
  * @since 2018-11-1
  */
-
 public interface ILexer {
+
     /**
      * Reads token and returns it.
      *
-     * @throws ReaderException - throws when reading exception occurs
-     * @return token
+     * @return token.
+     * @throws ReaderException - throws when reading exception occurs.
      */
     IToken readToken() throws ReaderException;
 
     /**
-     *Determines whether there are more token exists.
-     * @return boolean
+     * Determines whether there are more token exists.
+     *
+     * @return true if exists, false otherwise.
      */
     boolean hasMoreTokens();
 }

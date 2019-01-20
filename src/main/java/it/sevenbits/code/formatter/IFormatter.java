@@ -17,10 +17,10 @@ public interface IFormatter {
     /**
      * Formats.
      *
-     * @param reader - source of code to format
-     * @param writer - storage for formatted code
-     * @throws ReaderException - throws when reading exception occurs
-     * @throws WriterException - throws when writing exception occurs
+     * @param reader - source of code to format.
+     * @param writer - storage for formatted code.
+     * @throws ReaderException - throws when reading exception occurs.
+     * @throws WriterException - throws when writing exception occurs.
      */
     void format(final IReader reader, final IWriter writer) throws ReaderException, WriterException;
 }

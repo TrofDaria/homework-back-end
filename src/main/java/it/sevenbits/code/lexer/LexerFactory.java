@@ -1,6 +1,7 @@
 package it.sevenbits.code.lexer;
 
 import it.sevenbits.code.reader.IReader;
+import it.sevenbits.code.reader.ReaderException;
 
 /**
  * Interface ILexerFactory.
@@ -12,12 +13,13 @@ import it.sevenbits.code.reader.IReader;
 public class LexerFactory implements ILexerFactory {
 
     /**
-     * Creates ILexer.
+     * Creates Lexer.
      *
-     * @param reader - reader to pass in the ILexer
+     * @param reader - reader to pass in the ILexer.
+     * @return created Lexer.
      */
     @Override
-    public ILexer createLexer(final IReader reader) {
+    public ILexer createLexer(final IReader reader) throws ReaderException {
         return new Lexer(reader);
     }
 }

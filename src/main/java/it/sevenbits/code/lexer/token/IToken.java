@@ -12,14 +12,14 @@ public interface IToken {
     /**
      * Returns token name.
      *
-     * @return token name
+     * @return token name.
      */
     String getName();
 
     /**
      * Returns a lexeme that the token contains.
      *
-     * @return lexeme
+     * @return lexeme.
      */
     String getLexeme();
 }

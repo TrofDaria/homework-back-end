@@ -1,1 +1,1 @@
-a{ddd;b{ccc;}eee;}
+a{b;c;}

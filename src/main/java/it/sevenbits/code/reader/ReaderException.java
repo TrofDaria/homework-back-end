@@ -8,10 +8,11 @@ package it.sevenbits.code.reader;
  * @since 2018-11-1
  */
 public class ReaderException extends Exception {
+
     /**
      * Constructor.
      *
-     * @param message - message to receive
+     * @param message - message to receive.
      */
     public ReaderException(final String message) {
         super(message);
@@ -20,8 +21,8 @@ public class ReaderException extends Exception {
     /**
      * Constructor.
      *
-     * @param message - message to receive
-     * @param e - exception to handle
+     * @param message - message to receive.
+     * @param e - exception to handle.
      */
     public ReaderException(final String message, final Exception e) {
         super(message, e);

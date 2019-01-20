@@ -7,19 +7,20 @@ package it.sevenbits.code.reader;
  * @version 1.0
  * @since 2018-11-1
  */
-
 public interface IReader {
+
     /**
      * Function hasNext determines whether the next element to read exists.
      *
-     * @return boolean
+     * @return true if next element exists, false otherwise.
      */
     boolean hasNext();
+
     /**
      * Reads a character.
      *
-     * @return char
-     * @throws ReaderException - throws when failed to read char
+     * @return char.
+     * @throws ReaderException - throws when failed to read char.
      */
     char read() throws ReaderException;
 }

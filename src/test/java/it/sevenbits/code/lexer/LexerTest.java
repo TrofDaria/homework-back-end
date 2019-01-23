@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 
 public class LexerTest {
@@ -136,4 +134,6 @@ public class LexerTest {
                     expectedTokens.get(i).getLexeme(), tokens.get(i).getLexeme());
         }
     }
+
+
 }

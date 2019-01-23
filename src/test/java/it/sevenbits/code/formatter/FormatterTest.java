@@ -1,13 +1,12 @@
 package it.sevenbits.code.formatter;
 
-import it.sevenbits.code.StringWriter;
 import it.sevenbits.code.lexer.LexerFactory;
 import it.sevenbits.code.reader.FileReader;
 import it.sevenbits.code.reader.IReader;
 import it.sevenbits.code.reader.ReaderException;
 import it.sevenbits.code.writer.IWriter;
+import it.sevenbits.code.writer.StringWriter;
 import it.sevenbits.code.writer.WriterException;
-import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
